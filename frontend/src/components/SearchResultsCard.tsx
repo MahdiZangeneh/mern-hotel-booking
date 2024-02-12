@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { HotelType } from "../../../backend/src/shared/types";
 import { AiFillStar } from "react-icons/ai";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
 type Props = {
   hotel: HotelType;
 };
@@ -8,12 +10,17 @@ type Props = {
 const SearchResultsCard = ({ hotel }: Props) => {
   return (
     <div className="grid grid-cols-1 xl:grid-cols-[2fr_3fr] border border-slate-300 rounded-lg p-8 gap-8">
-      <div className="w-full h-[300px]">
-        <img
-          src={hotel.imageUrls[0]}
-          className="w-full h-full object-cover object-center"
-        />
-      </div>
+      <Carousel swipeable>
+        {hotel.imageUrls.map((image, index) => (
+          <div key={index} className="h-[300px]">
+            <img
+              src={image}
+              alt={hotel.name}
+              className="rounded-md w-full h-full object-cover object-center"
+            />
+          </div>
+        ))}
+      </Carousel>
       <div className="grid grid-rows-[1fr_2fr_1fr]">
         <div>
           <div className="flex items-center">

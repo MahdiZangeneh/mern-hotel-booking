@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import * as apiClient from "./../api-client";
 import { AiFillStar } from "react-icons/ai";
 import GuestInfoForm from "../forms/GuestInfoForm/GuestInfoForm";
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
 
 const Detail = () => {
   const { hotelId } = useParams();
@@ -30,16 +32,18 @@ const Detail = () => {
         <h1 className="text-3xl font-bold">{hotel.name}</h1>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {hotel.imageUrls.map((image, index) => (
-          <div key={index} className="h-[300px]">
-            <img
-              src={image}
-              alt={hotel.name}
-              className="rounded-md w-full h-full object-cover object-center"
-            />
-          </div>
-        ))}
+      <div className="">
+        <Carousel centerMode showThumbs={false} infiniteLoop swipeable>
+          {hotel.imageUrls.map((image, index) => (
+            <div key={index} className="h-[450px]">
+              <img
+                src={image}
+                alt={hotel.name}
+                className="rounded-md w-full h-full object-cover object-center p-2"
+              />
+            </div>
+          ))}
+        </Carousel>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-2">
