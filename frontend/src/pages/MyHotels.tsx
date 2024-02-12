@@ -18,12 +18,12 @@ const MyHotels = () => {
   }
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-5 container mx-auto">
       <span className="flex justify-between">
         <h1 className="text-3xl font-bold">My Hotels</h1>
         <Link
           to="/add-hotel"
-          className="flex bg-blue-600 text-white text-xl font-bold p-2 hover:bg-blue-500"
+          className="flex bg-custom-gray text-white text-xl font-bold p-2 hover:bg-custom-blue transition-colors duration-300 ease-in-out"
         >
           Add Hotel
         </Link>
@@ -60,7 +60,7 @@ const MyHotels = () => {
             </div>
             <span className="flex justify-end">
               <Link
-                className="flex bg-blue-600 text-white text-xl font-bold p-2 hover:bg-blue-500"
+                className="flex bg-custom-gray text-white text-xl font-bold p-2 hover:bg-custom-blue transition-colors duration-300 ease-in-out"
                 to={`/edit-hotel/${hotel._id}`}
               >
                 View Details

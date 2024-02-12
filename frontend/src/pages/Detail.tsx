@@ -3,8 +3,9 @@ import { useParams } from "react-router-dom";
 import * as apiClient from "./../api-client";
 import { AiFillStar } from "react-icons/ai";
 import GuestInfoForm from "../forms/GuestInfoForm/GuestInfoForm";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
+import Carousel from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 const Detail = () => {
   const { hotelId } = useParams();
@@ -21,8 +22,43 @@ const Detail = () => {
     return <></>;
   }
 
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    initialSlide: 0,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <div className="space-y-6">
+    <div className="container mx-auto space-y-6">
       <div>
         <span className="flex">
           {Array.from({ length: hotel.starRating }).map((_, index) => (
@@ -33,7 +69,7 @@ const Detail = () => {
       </div>
 
       <div className="">
-        <Carousel centerMode showThumbs={false} infiniteLoop swipeable>
+        <Carousel {...settings}>
           {hotel.imageUrls.map((image, index) => (
             <div key={index} className="h-[450px]">
               <img

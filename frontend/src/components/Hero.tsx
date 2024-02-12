@@ -1,12 +1,30 @@
+import Carousel from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import slider1 from "./../assets/slider-1.jpeg";
+import slider2 from "./../assets/slider-2.jpeg";
+
 const Hero = () => {
+  const settings = {
+    fade: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    waitForAnimate: false,
+    autoplay: true,
+    autoplaySpeed: 4000,
+  };
   return (
-    <div className="bg-blue-800 pb-16">
-      <div className="container mx-auto flex flex-col gap-2">
-        <h1 className="text-5xl text-white font-bold">Find your next stay</h1>
-        <p className="text-2xl text-white">
-          Search low prices on hotels for your dream vacations...
-        </p>
-      </div>
+    <div className="">
+      <Carousel {...settings}>
+        <div>
+          <img src={slider1} alt="slider 1" />
+        </div>
+        <div>
+          <img src={slider2} alt="slider 2" />
+        </div>
+      </Carousel>
     </div>
   );
 };

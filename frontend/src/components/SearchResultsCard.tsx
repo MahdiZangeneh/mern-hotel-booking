@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { HotelType } from "../../../backend/src/shared/types";
 import { AiFillStar } from "react-icons/ai";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 type Props = {
   hotel: HotelType;
@@ -10,7 +10,7 @@ type Props = {
 const SearchResultsCard = ({ hotel }: Props) => {
   return (
     <div className="grid grid-cols-1 xl:grid-cols-[2fr_3fr] border border-slate-300 rounded-lg p-8 gap-8">
-      <Carousel swipeable>
+      <Carousel swipeable={true}>
         {hotel.imageUrls.map((image, index) => (
           <div key={index} className="h-[300px]">
             <img
@@ -64,7 +64,7 @@ const SearchResultsCard = ({ hotel }: Props) => {
             </span>
             <Link
               to={`/detail/${hotel._id}`}
-              className="bg-blue-600 text-white h-full p-2 font-bold text-xl max-w-fit hover:bg-blue-500"
+              className="bg-custom-gray text-white h-full p-2 font-bold text-xl max-w-fit transition-colors duration-300 ease-in-out hover:bg-custom-blue"
             >
               View More
             </Link>
