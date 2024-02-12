@@ -19,10 +19,10 @@ const Hero = () => {
     <div className="">
       <Carousel {...settings}>
         <div>
-          <img src={slider1} alt="slider 1" />
+          <img src={slider1} alt="slider 1" className="w-full" />
         </div>
         <div>
-          <img src={slider2} alt="slider 2" />
+          <img src={slider2} alt="slider 2" className="w-full" />
         </div>
       </Carousel>
     </div>
