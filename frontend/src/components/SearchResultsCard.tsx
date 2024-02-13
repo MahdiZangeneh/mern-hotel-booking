@@ -1,16 +1,23 @@
 import { Link } from "react-router-dom";
 import { HotelType } from "../../../backend/src/shared/types";
 import { AiFillStar } from "react-icons/ai";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
+import Carousel from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 type Props = {
   hotel: HotelType;
 };
 
 const SearchResultsCard = ({ hotel }: Props) => {
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-[2fr_3fr] border border-slate-300 rounded-lg p-8 gap-8">
-      <Carousel swipeable={true}>
+    <div className="grid grid-cols-1 xl:grid-cols-2 border border-slate-300 rounded-lg p-8 gap-8">
+      <Carousel {...settings}>
         {hotel.imageUrls.map((image, index) => (
           <div key={index} className="h-[300px]">
             <img
