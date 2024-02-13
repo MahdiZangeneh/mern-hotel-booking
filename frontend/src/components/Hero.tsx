@@ -14,6 +14,7 @@ const Hero = () => {
     waitForAnimate: false,
     autoplay: true,
     autoplaySpeed: 4000,
+    arrows: false,
   };
   return (
     <div className="">

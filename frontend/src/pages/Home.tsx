@@ -22,6 +22,7 @@ const Home = () => {
     initialSlide: 0,
     autoplay: true,
     autoplaySpeed: 2000,
+    arrows: false,
     responsive: [
       {
         breakpoint: 1024,
