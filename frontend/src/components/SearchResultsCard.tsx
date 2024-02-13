@@ -1,29 +1,50 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { HotelType } from "../../../backend/src/shared/types";
 import { AiFillStar } from "react-icons/ai";
 import Carousel from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import FullscreenImageViewer from "./FullscreenImageViewer";
+
 type Props = {
   hotel: HotelType;
 };
 
 const SearchResultsCard = ({ hotel }: Props) => {
+  const [fullscreenImages, setFullscreenImages] = useState<string[]>([]);
+  const [showFullscreenViewer, setShowFullscreenViewer] =
+    useState<boolean>(false);
+
+  const handleImageClick = (images: string[]) => {
+    setFullscreenImages(images);
+    setShowFullscreenViewer(true);
+  };
+
+  const handleCloseFullscreenViewer = () => {
+    setShowFullscreenViewer(false);
+  };
+
   const settings = {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 border border-slate-300 rounded-lg p-8 gap-8">
       <Carousel {...settings}>
         {hotel.imageUrls.map((image, index) => (
-          <div key={index} className="h-[300px]">
+          <div
+            key={index}
+            className="h-[300px]"
+            onClick={() => handleImageClick(hotel.imageUrls)}
+          >
             <img
               src={image}
               alt={hotel.name}
-              className="rounded-md w-full h-full object-cover object-center"
+              className="rounded-md w-full h-full object-cover object-center cursor-pointer"
             />
           </div>
         ))}
@@ -78,6 +99,13 @@ const SearchResultsCard = ({ hotel }: Props) => {
           </div>
         </div>
       </div>
+
+      {showFullscreenViewer && (
+        <FullscreenImageViewer
+          images={fullscreenImages}
+          onClose={handleCloseFullscreenViewer}
+        />
+      )}
     </div>
   );
 };

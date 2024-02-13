@@ -12,7 +12,7 @@ const Header = () => {
     setIsOpen(!isOpen);
   };
   return (
-    <div className="bg-white py-10 shadow z-50">
+    <div className="bg-white py-10 shadow z-40">
       <div className="container mx-auto flex justify-between">
         <span className="text-3xl text-white font-bold tracking-tight">
           <Link to="/">
@@ -54,13 +54,19 @@ const Header = () => {
 
         {/* Menu links */}
         <div
-          className={`absolute top-[120px] left-0 right-0 bg-white z-50 shadow transition-all duration-300 ${
+          className={`absolute top-[120px] left-0 right-0 bg-white z-40 shadow transition-all duration-300 ${
             isOpen ? "opacity-100 visible" : "opacity-0 invisible"
           }`}
         >
           <span className="flex flex-col lg:flex-row lg:space-x-2">
             {isLoggedIn ? (
               <>
+                <Link
+                  to="/"
+                  className="block text-center text-white text-sm py-2 bg-custom-gray border-b-2 border-gray-800"
+                >
+                  HOME
+                </Link>
                 <Link
                   className="block text-center text-white text-sm py-2 bg-custom-gray border-b-2 border-gray-800"
                   to="/my-bookings"
@@ -109,6 +115,12 @@ const Header = () => {
         <span className="hidden md:flex space-x-2">
           {isLoggedIn ? (
             <>
+              <NavLink
+                to="/"
+                className="flex items-center text-black px-3 text-md border-b-2 border-transparent hover:border-gray-200 transition-colors duration-300 ease-in-out"
+              >
+                Home
+              </NavLink>
               <NavLink
                 className="flex items-center text-black px-3 text-md border-b-2 border-transparent hover:border-gray-200 transition-colors duration-300 ease-in-out"
                 to="/my-bookings"

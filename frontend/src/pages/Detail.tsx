@@ -1,15 +1,16 @@
-import { useQuery } from "react-query";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import * as apiClient from "./../api-client";
 import { AiFillStar } from "react-icons/ai";
-import GuestInfoForm from "../forms/GuestInfoForm/GuestInfoForm";
 import Carousel from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useQuery } from "react-query";
+import * as apiClient from "./../api-client";
+import GuestInfoForm from "../forms/GuestInfoForm/GuestInfoForm";
+import FullscreenImageViewer from "./../components/FullscreenImageViewer";
 
 const Detail = () => {
   const { hotelId } = useParams();
-
   const { data: hotel } = useQuery(
     "fetchHotelById",
     () => apiClient.fetchHotelById(hotelId as string),
@@ -17,6 +18,10 @@ const Detail = () => {
       enabled: !!hotelId,
     }
   );
+
+  const [fullscreenImages, setFullscreenImages] = useState<string[]>([]);
+  const [showFullscreenViewer, setShowFullscreenViewer] =
+    useState<boolean>(false);
 
   if (!hotel) {
     return <></>;
@@ -57,6 +62,15 @@ const Detail = () => {
     ],
   };
 
+  const handleImageClick = (images: string[]) => {
+    setFullscreenImages(images);
+    setShowFullscreenViewer(true);
+  };
+
+  const handleCloseFullscreenViewer = () => {
+    setShowFullscreenViewer(false);
+  };
+
   return (
     <div className="container mx-auto space-y-6">
       <div>
@@ -71,11 +85,15 @@ const Detail = () => {
       <div className="">
         <Carousel {...settings}>
           {hotel.imageUrls.map((image, index) => (
-            <div key={index} className="h-[450px]">
+            <div
+              key={index}
+              className="h-[450px]"
+              onClick={() => handleImageClick(hotel.imageUrls)}
+            >
               <img
                 src={image}
                 alt={hotel.name}
-                className="rounded-md w-full h-full object-cover object-center p-2"
+                className="rounded-md w-full h-full object-cover object-center p-2 cursor-pointer"
               />
             </div>
           ))}
@@ -99,6 +117,13 @@ const Detail = () => {
           />
         </div>
       </div>
+
+      {showFullscreenViewer && (
+        <FullscreenImageViewer
+          images={fullscreenImages}
+          onClose={handleCloseFullscreenViewer}
+        />
+      )}
     </div>
   );
 };
