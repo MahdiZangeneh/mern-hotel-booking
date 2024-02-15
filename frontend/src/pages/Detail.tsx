@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { AiFillStar } from "react-icons/ai";
 import Carousel from "react-slick";
@@ -18,6 +18,12 @@ const Detail = () => {
       enabled: !!hotelId,
     }
   );
+  useEffect(() => {
+    window.scrollTo({
+      top: 500,
+      behavior: "smooth",
+    });
+  }, []);
 
   const [fullscreenImages, setFullscreenImages] = useState<string[]>([]);
   const [showFullscreenViewer, setShowFullscreenViewer] =

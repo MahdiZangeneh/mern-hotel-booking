@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { useSearchContext } from "../contexts/SearchContext";
 import * as apiClient from "../api-client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SearchResultsCard from "../components/SearchResultsCard";
 import Pagination from "../components/Pagination";
 import StarRatingFilter from "../components/StarRatingFilter";
@@ -67,6 +67,13 @@ const Search = () => {
         : prevFacilities.filter((prevFacility) => prevFacility !== facility)
     );
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 500,
+      behavior: "smooth",
+    });
+  }, []);
 
   return (
     <div className="container mx-auto grid grid-cols-1 lg:grid-cols-[250px_1fr] gap-5">

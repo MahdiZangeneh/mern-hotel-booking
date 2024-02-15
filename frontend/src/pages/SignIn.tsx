@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "react-query";
 import * as apiClient from "../api-client";
 import { useAppContext } from "../contexts/AppContext";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export type SignInFormData = {
   email: string;
@@ -37,8 +38,18 @@ const SignIn = () => {
     mutation.mutate(data);
   });
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 500,
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
-    <form className="flex flex-col gap-5 container mx-auto" onSubmit={onSubmit}>
+    <form
+      className="flex flex-col gap-5 container mx-auto transition-transform duration-300 ease-in-out"
+      onSubmit={onSubmit}
+    >
       <h2 className="text-3xl font-bold">Sign In</h2>
       <label className="text-gray-700 text-sm font-bold flex-1">
         Email{" "}
@@ -46,7 +57,7 @@ const SignIn = () => {
           type="email"
           className="border rounded w-full py-1 px-2 font-normal"
           {...register("email", { required: "This field is required" })}
-        ></input>
+        />
         {errors.email && (
           <span className="text-red-500">{errors.email.message}</span>
         )}
@@ -63,7 +74,7 @@ const SignIn = () => {
               message: "Password must be at least 6 characters",
             },
           })}
-        ></input>
+        />
         {errors.password && (
           <span className="text-red-500">{errors.password.message}</span>
         )}

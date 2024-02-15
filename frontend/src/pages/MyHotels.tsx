@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import * as apiClient from "../api-client";
 import { BsBuilding, BsMap } from "react-icons/bs";
 import { BiHotel, BiMoney, BiStar } from "react-icons/bi";
+import { useEffect } from "react";
 
 const MyHotels = () => {
   const { data: hotelData } = useQuery(
@@ -12,6 +13,13 @@ const MyHotels = () => {
       onError: () => {},
     }
   );
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 500,
+      behavior: "smooth",
+    });
+  }, []);
 
   if (!hotelData) {
     return <span>No Hotels found</span>;

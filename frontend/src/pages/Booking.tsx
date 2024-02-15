@@ -25,6 +25,13 @@ const Booking = () => {
     }
   }, [search.checkIn, search.checkOut]);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 500,
+      behavior: "smooth",
+    });
+  }, []);
+
   const { data: paymentIntentData } = useQuery(
     "createPaymentIntent",
     () =>

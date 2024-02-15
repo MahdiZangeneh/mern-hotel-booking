@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import * as apiClient from "../api-client";
+import { useEffect } from "react";
 
 const MyBookings = () => {
   const { data: hotels } = useQuery(
@@ -7,8 +8,15 @@ const MyBookings = () => {
     apiClient.fetchMyBookings
   );
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 500,
+      behavior: "smooth",
+    });
+  }, []);
+
   if (!hotels || hotels.length === 0) {
-    return <span>No bookings found</span>;
+    return <div className="container mx-auto">No bookings found</div>;
   }
 
   return (
