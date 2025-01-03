@@ -143,7 +143,7 @@ const Header = () => {
               >
                 HOME
               </NavLink>
-              <NavLink
+              {/* <NavLink
                 to="/s"
                 className="flex items-center text-black px-3 text-sm border-b-2 border-transparent hover:border-gray-200 transition-colors duration-300 ease-in-out"
               >
@@ -154,7 +154,7 @@ const Header = () => {
                 className="flex items-center text-black px-3 text-sm border-b-2 border-transparent hover:border-gray-200 transition-colors duration-300 ease-in-out"
               >
                 CONTACT
-              </NavLink>
+              </NavLink> */}
               <NavLink
                 to="/sign-in"
                 className="flex items-center text-black px-3 text-sm border-b-2 border-transparent hover:border-gray-200 transition-colors duration-300 ease-in-out"
